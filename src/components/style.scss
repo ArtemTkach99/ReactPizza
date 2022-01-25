@@ -1,0 +1,198 @@
+@import "macro-css";
+
+* {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  outline: none;
+  font-family: "Proxima Nova", Roboto, system-ui, Tahoma, sans-serif;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+* {
+  list-style-type: none;
+}
+
+.header {
+  border-bottom: 1px solid #f7f7f7;
+  img {
+    margin-right: 16px;
+  }
+  .borderLine {
+    padding: 50px;
+
+    h1 {
+      margin: 0;
+    }
+
+    p {
+      margin: 0;
+      color: #7b7b7b;
+    }
+  }
+
+  .cart {
+    width: 150px;
+    height: 50px;
+    background: #fe5f1e;
+    border-radius: 30px;
+
+    cursor: pointer;
+
+    p {
+      color: #ffffff;
+      border-right: 1px solid;
+      padding-right: 13px;
+    }
+
+    svg {
+      margin-left: 13px;
+    }
+
+    span {
+      color: #ffffff;
+      padding-left: 8px;
+    }
+  }
+}
+
+.home {
+  .categories {
+    ul {
+      padding-left: 0px;
+    }
+
+    li:active {
+      background-color: black;
+      color: #f9f9f9;
+    }
+
+    li {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      margin-right: 16px;
+      padding: 14px 30px;
+
+      background-color: #f9f9f9;
+      border-radius: 30px;
+    }
+  }
+
+  .sort-hover {
+    margin-right: 40px;
+
+    span {
+      color: #fe5f1e;
+    }
+  }
+}
+
+.content-pizza {
+  h2 {
+    font-size: 32px;
+    line-height: 39px;
+    margin: 32px 0px 40px 0px;
+  }
+
+  .pizza {
+    width: 280px;
+    height: 459px;
+
+    .filter-pizza {
+      background-color: #f3f3f3;
+      border-radius: 10px;
+      width: 280px;
+
+      li:active {
+        background-color: #ffffff;
+        border-radius: 5px;
+      }
+
+      ul:first-child {
+        margin: 5px;
+        border-radius: 5px;
+        padding-left: 0;
+        li {
+          font-size: 14px;
+          width: 132px;
+          height: 32px;
+        }
+      }
+
+      ul:last-child {
+        padding-left: 0;
+        margin: 5px;
+        li {
+          font-size: 14px;
+          width: 86px;
+          height: 32px;
+        }
+      }
+    }
+
+    img {
+      width: 259px;
+      height: 260px;
+    }
+
+    h4 {
+      margin: 8px 0 22px;
+      width: 280px;
+      text-align: center;
+    }
+
+    .price-button {
+      margin-top: 16px;
+      width: 280px;
+    }
+
+    .price {
+      font-family: Proxima Nova;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 22px;
+      line-height: 27px;
+    }
+
+    .add-to-cart {
+      border: 1px solid #eb5a1e;
+      border-radius: 30px;
+
+      .button-add-pizza {
+        padding: 9px;
+
+        span {
+          color: #eb5a1e;
+          margin: 0 11px 0;
+        }
+      }
+
+      i {
+        color: #ffffff;
+        background-color: #eb5a1e;
+        padding: 3px 7px;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+
+        font-family: Proxima Nova;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 13px;
+      }
+    }
+
+    .add-to-cart:active {
+      color: #ffffff;
+      background: #eb5a1e;
+
+      span {
+        color: #ffffff;
+        margin: 0 11px 0;
+      }
+    }
+  }
+}

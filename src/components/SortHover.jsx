@@ -1,16 +1,27 @@
 import React from "react";
+import { useRef } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 
-function SortHover() {
+function SortHover({ items }) {
   const [visiblePopup, setVisiblePopup] = useState(false);
+  const [activeItem, setActiveItem] = useState(2);
+  const sortRef = useRef(null);
+  const activeLabel = items[activeItem];
 
   const onDropdown = () => {
     setVisiblePopup(!visiblePopup);
   };
 
+  const onSelectItem = (index) => {
+    setActiveItem(index);
+    setVisiblePopup(false);
+  };
+
   const handleOutsideClick = (e) => {
-    console.log(e);
+    if (!e.path.includes(sortRef.current)) {
+      setVisiblePopup(false);
+    }
   };
 
   useEffect(() => {
@@ -18,9 +29,10 @@ function SortHover() {
   }, []);
 
   return (
-    <div className="d-flex align-center sort-hover flex-column">
+    <div ref={sortRef} className="d-flex align-center sort-hover flex-column">
       <div onClick={onDropdown} className="sort-dropdown d-flex align-center ">
         <svg
+          className={visiblePopup ? "rotated" : ""}
           width="10"
           height="6"
           viewBox="0 0 10 6"
@@ -33,14 +45,22 @@ function SortHover() {
           />
         </svg>{" "}
         <p>
-          Сортировка по: <span>популярности</span>
+          Сортировка по: <span>{activeLabel}</span>
         </p>
       </div>
       {visiblePopup && (
         <div className="sort-popup d-flex flex-column">
-          <li>популярности</li>
-          <li>по цене</li>
-          <li>по алфавиту</li>
+          {items &&
+            items.map((a, index) => {
+              return (
+                <li
+                  onClick={() => onSelectItem(index)}
+                  className={activeItem === index ? "active" : ""}
+                >
+                  {a}
+                </li>
+              );
+            })}
         </div>
       )}
     </div>

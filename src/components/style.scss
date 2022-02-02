@@ -93,6 +93,15 @@
 
   .sort-dropdown {
     cursor: pointer;
+
+    svg {
+      margin-right: 6px;
+      transform: rotate(180deg);
+
+      &.rotated {
+        transform: rotate(0);
+      }
+    }
   }
 
   .sort-popup {

@@ -11,7 +11,7 @@ function Home() {
     <div className="home">
       <div className="categories d-flex align-center justify-between">
         <Categories items={items} />
-        <SortHover />
+        <SortHover items={["популярности", "цене", "алфавиту"]} />
       </div>
       <div className="content-pizza mb-40">
         <h2>Все пиццы</h2>

@@ -7,7 +7,7 @@ function SortHover({ items }) {
   const [visiblePopup, setVisiblePopup] = useState(false);
   const [activeItem, setActiveItem] = useState(2);
   const sortRef = useRef(null);
-  const activeLabel = items[activeItem];
+  const activeLabel = items[activeItem].name;
 
   const onDropdown = () => {
     setVisiblePopup(!visiblePopup);
@@ -51,13 +51,13 @@ function SortHover({ items }) {
       {visiblePopup && (
         <div className="sort-popup d-flex flex-column">
           {items &&
-            items.map((a, index) => {
+            items.map((obj, index) => {
               return (
                 <li
                   onClick={() => onSelectItem(index)}
                   className={activeItem === index ? "active" : ""}
                 >
-                  {a}
+                  {obj.name}
                 </li>
               );
             })}

@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 
-export default function Categories({ items }) {
+export default function Categories({ items, onClickItem }) {
   const [activeItem, setActiveItem] = useState(null);
+
+  const onSelectItem = (index) => {
+    setActiveItem(index);
+    onClickItem(index);
+  };
 
   return (
     <ul className="d-flex">
       <li
-        onClick={() => setActiveItem(null)}
+        onClick={() => onSelectItem(null)}
         className={activeItem === null ? "active" : ""}
       >
         Все
@@ -14,7 +19,7 @@ export default function Categories({ items }) {
       {items.map((a, index) => {
         return (
           <li
-            onClick={() => setActiveItem(index)}
+            onClick={() => onSelectItem(index)}
             className={activeItem === index ? "active" : ""}
           >
             {a}

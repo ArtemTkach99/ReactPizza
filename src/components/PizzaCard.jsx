@@ -1,28 +1,58 @@
-import React from "react";
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import classNames from "classnames";
+
 import "./style.scss";
 
-function PizzaCard() {
+function PizzaCard({ name, price, imageUrl, types, sizes }) {
+  const typesNames = ["тонкое", "традиционное"];
+  const typesSizes = [26, 30, 40];
+  const [activeType, setActiveType] = useState(types[0]);
+  const [activeSize, setActiveSize] = useState(sizes[0]);
+
+  const onSelectType = (index) => {
+    setActiveType(index);
+  };
+
+  const onSelectSize = (size) => {
+    setActiveSize(size);
+  };
+
   return (
-    <div className="pizza d-flex flex-column align-center mr-40">
-      <img
-        class="pizza-block__image"
-        src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
-        alt="Pizza"
-      />
-      <h4>Чизбургер-пицца</h4>
+    <div className="pizza d-flex flex-column align-center mr-40 mt-35">
+      <img class="pizza-block__image" src={imageUrl} alt="Pizza" />
+      <h4>{name}</h4>
       <div className="filter-pizza">
         <ul className="d-flex">
-          <li className="d-flex align-center justify-center ">тонкое</li>
-          <li className="d-flex align-center justify-center">традиционное</li>
+          {typesNames.map((type, index) => (
+            <li
+              onClick={() => onSelectType(index)}
+              className={classNames({
+                active: activeType === index,
+                disabled: !types.includes(index),
+              })}
+            >
+              {type}
+            </li>
+          ))}
         </ul>
         <ul className="d-flex">
-          <li className="d-flex align-center justify-center ">26 см</li>
-          <li className="d-flex align-center justify-center ">30 см</li>
-          <li className="d-flex align-center justify-center">40 см</li>
+          {typesSizes.map((size, index) => (
+            <li
+              key={index + "_" + size}
+              onClick={() => onSelectSize(size)}
+              className={classNames({
+                active: activeSize === size,
+                disabled: !sizes.includes(size),
+              })}
+            >
+              {size} см.
+            </li>
+          ))}
         </ul>
       </div>
       <div className="price-button d-flex align-center justify-between">
-        <div className="price">от 200 грн</div>
+        <div className="price">от {price} грн</div>
 
         <div className="add-to-cart d-flex align-end">
           <div className="button-add-pizza">
@@ -51,5 +81,9 @@ function PizzaCard() {
     </div>
   );
 }
+
+PizzaCard.propTypes = {
+  name: PropTypes.string.isRequired,
+};
 
 export default PizzaCard;

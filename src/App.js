@@ -15,9 +15,9 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    axios.get("http://localhost:3000/db.json").then(function (res) {
+    axios.get("http://localhost:3001/pizzas").then(function (res) {
       // setPizzas(res.data.pizzas);
-      dispatch(setPizzas(res.data.pizzas));
+      dispatch(setPizzas(res.data));
     });
   }, []);
 

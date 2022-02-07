@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 
-function SortHover({ items }) {
+const SortHover = React.memo(function SortHover({ items }) {
   const [visiblePopup, setVisiblePopup] = useState(false);
   const [activeItem, setActiveItem] = useState(2);
   const sortRef = useRef(null);
@@ -65,6 +65,6 @@ function SortHover({ items }) {
       )}
     </div>
   );
-}
+});
 
 export default SortHover;

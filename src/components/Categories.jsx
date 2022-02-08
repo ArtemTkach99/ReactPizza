@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 
-const Categories = React.memo(function Categories({ items, onClickItem }) {
-  const [activeItem, setActiveItem] = useState(null);
-
+const Categories = React.memo(function Categories({
+  activeCategory,
+  items,
+  onClickItem,
+}) {
   const onSelectItem = (index) => {
-    setActiveItem(index);
     onClickItem(index);
   };
 
@@ -12,7 +13,7 @@ const Categories = React.memo(function Categories({ items, onClickItem }) {
     <ul className="d-flex">
       <li
         onClick={() => onSelectItem(null)}
-        className={activeItem === null ? "active" : ""}
+        className={activeCategory === null ? "active" : ""}
       >
         Все
       </li>
@@ -20,7 +21,7 @@ const Categories = React.memo(function Categories({ items, onClickItem }) {
         return (
           <li
             onClick={() => onSelectItem(index)}
-            className={activeItem === index ? "active" : ""}
+            className={activeCategory === index ? "active" : ""}
           >
             {a}
           </li>

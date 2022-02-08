@@ -3,18 +3,27 @@ import { useRef } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 
-const SortHover = React.memo(function SortHover({ items }) {
+const SortHover = React.memo(function SortHover({
+  activeSortType,
+  items,
+  onClickSortType,
+}) {
   const [visiblePopup, setVisiblePopup] = useState(false);
-  const [activeItem, setActiveItem] = useState(2);
-  const sortRef = useRef(null);
-  const activeLabel = items[activeItem].name;
+
+  const sortRef = useRef();
+  const activeLabel = items.find((obj) => obj.type === activeSortType).name;
+  // const activeLabel = "сделай нормально";
+  // console.log(items.find((a) => a.type === activeSortType.type).name);
 
   const onDropdown = () => {
     setVisiblePopup(!visiblePopup);
   };
 
-  const onSelectItem = (index) => {
-    setActiveItem(index);
+  const onSelectItem = (type) => {
+    if (onClickSortType) {
+      onClickSortType(type);
+    }
+
     setVisiblePopup(false);
   };
 
@@ -54,8 +63,8 @@ const SortHover = React.memo(function SortHover({ items }) {
             items.map((obj, index) => {
               return (
                 <li
-                  onClick={() => onSelectItem(index)}
-                  className={activeItem === index ? "active" : ""}
+                  onClick={() => onSelectItem(obj)}
+                  className={activeSortType === obj.type ? "active" : ""}
                 >
                   {obj.name}
                 </li>
